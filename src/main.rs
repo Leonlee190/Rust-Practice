@@ -1,8 +1,8 @@
 use std::env;
 
 #[allow(dead_code)]
-fn error() -> ! {
-    eprintln!("Couldn't convert input to unsigned integer");
+fn error(_x: &str) -> ! {
+    eprintln!("Couldn't convert input {} to unsigned integer", _x);
     std::process::exit(1);
 }
 
@@ -14,9 +14,9 @@ fn main() {
         std::process::exit(1);
     }
 
-    let x: u64 = args[1].parse().unwrap_or_else(|_| error());
-    let y: u64 = args[2].parse().unwrap_or_else(|_| error());
-    let m: u64 = args[3].parse().unwrap_or_else(|_| error());
+    let x: u64 = args[1].parse().unwrap_or_else(|_| error(&args[1]));
+    let y: u64 = args[2].parse().unwrap_or_else(|_| error(&args[2]));
+    let m: u64 = args[3].parse().unwrap_or_else(|_| error(&args[3]));
 
     let result = modexp(x, y, m);
 
